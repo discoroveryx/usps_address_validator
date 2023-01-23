@@ -1,0 +1,13 @@
+[flake8]
+max-line-length=99
+extend-exclude=
+    manage.py,
+    asgi.py,
+    wsgi.py,
+    */static/CACHE/*,
+    .venv,
+    venv,
+per-file-ignores =
+    __init__.py:F401
+    */migrations/*:Q000,E501,I001
+inline-quotes='

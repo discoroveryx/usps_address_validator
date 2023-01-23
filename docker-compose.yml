@@ -1,0 +1,29 @@
+version: "3.9"
+volumes:
+  pg_data:
+services:
+  pg:
+    image: "postgres:11"
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  backend:
+    build: .
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    volumes:
+      - ./:/home/root/project
+    depends_on:
+      - pg
+    environment:
+      - DEBUG=${DEBUG}
+      - SECRET_KEY=${SECRET_KEY}
+    stdin_open: true
+    tty: true
+    command: "./docker_start.sh ${BACKEND_PORT}"
