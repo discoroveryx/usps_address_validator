@@ -1,0 +1,2 @@
+ADDRESS_VALIDATE_RESPONSE_NOT_AVAILABLE_ERROR = 'The service is not available'
+ADDRESS_VALIDATE_RESPONSE_NOT_FOUND_ERROR = 'The address is not found'
